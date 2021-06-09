@@ -44,6 +44,10 @@ app.get('/:nome', (request, response) => {
    
 })
 
+app.get('/',(req,res)=>{
+    res.send({ok: 'Hello'})
+})
+
 app.listen(3000,()=>{
     console.log('api iniciado na porta 3000')
 })
