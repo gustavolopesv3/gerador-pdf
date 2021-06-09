@@ -3,9 +3,11 @@ const ejs = require('ejs')
 const path = require('path')
 const puppeteer = require('puppeteer')
 const app = express()
+const cors = require('cors')
 
+const host = '0.0.0.0';
+app.use(cors());
 app.use(express.json());
-
 app.post('/pdf', async(request, response) => {
     console.log(request.body)
     const browser = await puppeteer.launch()
@@ -48,6 +50,6 @@ app.get('/',(req,res)=>{
     res.send({ok: 'Hello'})
 })
 
-app.listen(3000,()=>{
+app.listen(3000,host,()=>{
     console.log('api iniciado na porta 3000')
 })
