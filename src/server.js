@@ -16,7 +16,7 @@ app.post('/pdf', async(request, response) => {
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     let nome = request.body.nome
-    await page.goto(`https://certificado-pdf.herokuapp.com/`+nome, {
+    await page.goto(`http://localhost:${port}/${nome}`, {
         waitUntil: 'networkidle0'
     })
 
