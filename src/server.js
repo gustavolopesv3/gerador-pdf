@@ -6,6 +6,7 @@ const app = express()
 const cors = require('cors')
 
 const host = '0.0.0.0';
+const port = process.env.PORT || 3333;
 app.use(cors());
 app.use(express.json());
 app.post('/pdf', async(request, response) => {
@@ -50,6 +51,6 @@ app.get('/',(req,res)=>{
     res.send({ok: 'Hello'})
 })
 
-app.listen(3000,host,()=>{
-    console.log('api iniciado na porta 3000')
+app.listen(port,host,()=>{
+    console.log(`api iniciada na porta: ${port}`)
 })
