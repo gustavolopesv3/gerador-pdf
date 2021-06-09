@@ -9,12 +9,14 @@ const host = '0.0.0.0';
 const port = process.env.PORT || 3333;
 app.use(cors());
 app.use(express.json());
+
+
 app.post('/pdf', async(request, response) => {
     console.log(request.body)
     const browser = await puppeteer.launch()
     const page = await browser.newPage()
     let nome = request.body.nome
-    await page.goto('http://localhost:3000/'+nome, {
+    await page.goto(`http://localhost:${port}/`+nome, {
         waitUntil: 'networkidle0'
     })
 
