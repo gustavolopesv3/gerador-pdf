@@ -37,6 +37,7 @@ app.get('/pdf/:nome', async(request, response) => {
     console.log(request.params.nome)
     try {
         const browser = await puppeteer.launch({
+            handless: true,
             args: [
               '--no-sandbox',
               '--disable-setuid-sandbox',
