@@ -33,6 +33,28 @@ app.post('/pdf', async(request, response) => {
 
 })
 
+app.get('/pdf/:nome', async(request, response) => {
+    console.log(request.params.nome)
+    const browser = await puppeteer.launch()
+    const page = await browser.newPage()
+    let nome = request.params.nome
+    await page.goto(`http://localhost:${port}/${nome}`, {
+        waitUntil: 'networkidle0'
+    })
+
+    const pdf = await page.pdf({
+        printBackground: true,
+        format: 'Letter'
+    })
+
+    await browser.close()
+
+    response.contentType("application/pdf")
+
+    return response.send(pdf)
+
+})
+
 app.get('/:nome', (request, response) => {
 
     let nome = request.params.nome
