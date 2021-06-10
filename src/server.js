@@ -35,7 +35,12 @@ app.post('/pdf', async(request, response) => {
 
 app.get('/pdf/:nome', async(request, response) => {
     console.log(request.params.nome)
-    const browser = await puppeteer.launch()
+    const browser = await puppeteer.launch({
+        args: [
+          '--no-sandbox',
+          '--disable-setuid-sandbox',
+        ],
+      })
     const page = await browser.newPage()
     let nome = request.params.nome
     await page.goto(`http://localhost:${port}/${nome}`, {
